@@ -35,7 +35,9 @@ gulp.task('build', function() {
 
 gulp.task('vendor', function() {
   gulp
-    .src('./bower_components/phaser-official/build/phaser.js')
+    .src([
+      './bower_components/phaser-official/build/phaser.js',
+    ])
     .pipe(gulp.dest('./'));
 });
 
