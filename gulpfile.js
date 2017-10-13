@@ -1,7 +1,9 @@
 var browserify, concat, connect, filter, gulp;
 
 gulp = require('gulp');
+plumber = require('gulp-plumber');
 filter = require('gulp-filter');
+logger = require('gulp-logger');
 concat = require('gulp-concat');
 connect = require('gulp-connect');
 browserify = require('gulp-browserify');
@@ -9,10 +11,16 @@ browserify = require('gulp-browserify');
 gulp.task('build', function() {
   gulp
     .src('./game/**/*.js')
+    .pipe(plumber())
+    .pipe(logger({showChange: true, colors: true}))
     .pipe(browserify({
       insertGlobals: true,
       debug: !gulp.env.production
     }))
+    .on('error', function(error) {
+      console.log(error.toString());
+      this.emit('end');
+    })
     .pipe(concat('game.js'))
     .pipe(gulp.dest('./'))
     .pipe(connect.reload());
