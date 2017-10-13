@@ -53,6 +53,10 @@ window.onload = function() {
     }
   };
 
-  return game.state.start('boot');
+  game.prefabs = {
+    NineSlice: require('./prefabs/nineslice')
+  };
+
+  game.state.start('boot');
 };
 
