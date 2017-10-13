@@ -7,13 +7,7 @@ Preload = function() {
 
 Preload.prototype = {
   preload: function() {
-    this.asset = this.add.sprite(this.width / 2, this.height / 2, 'preloader');
-    this.asset.anchor.setTo(0.5, 0.5);
-
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
-    this.load.setPreloadSprite(this.asset);
-
-    this.load.image('yeoman', 'assets/yeoman-logo.png');
 
     var characterAssets = ['face', 'hair', 'pants', 'shirts', 'shoes', 'skin'];
     var tileAssets = ['building-tiles', 'city-details', 'city-tiles', 'landscape-tiles', 'vehicles'];
@@ -30,11 +24,21 @@ Preload.prototype = {
     }
   },
   create: function() {
-    return this.asset.cropEnabled = false;
+    this.loadingText = this.game.add.text(this.game.world.centerX, this.game.world.centerY, '', this.game.fonts.small);
+    this.loadingText.anchor.setTo(0.5, 0.5);
+    this.counter = 0;
+    this.game.time.events.loop(Phaser.Timer.SECOND/3, function() {
+      this.counter++;
+      if (this.counter > 4) {
+        this.counter = 0;
+      }
+    }, this);
   },
   update: function() {
+    this.loadingText.text = '';
+    this.loadingText.text = this.loadingText.text + Array(this.counter).join('.');
     if (!!this.ready) {
-      return this.game.state.start('menu');
+      this.game.state.start('menu');
     }
   },
   onLoadComplete: function() {

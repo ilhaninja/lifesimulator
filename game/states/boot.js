@@ -7,8 +7,17 @@ Boot.prototype = {
     this.load.image('preloader', 'assets/preloader.gif');
   },
   create: function() {
-    this.game.input.maxPointers = 1;
-    this.game.state.start('preload');
+    var game = this.game;
+
+    // preload fonts
+    game.add.text(0, 0, ' ', { font: '1px kenvector-future' } );
+    game.add.text(0, 0, ' ', { font: '1px kenvector-future-thin' } );
+
+    game.stage.backgroundColor = this.game.colors.blue;
+
+    game.input.maxPointers = 1;
+
+    game.state.start('preload');
   }
 };
 

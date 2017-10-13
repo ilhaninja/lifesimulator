@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'kenvector-future';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/kenvector_future.ttf');
+}
+
+@font-face {
+  font-family: 'kenvector-future-thin';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/kenvector_future_thin.ttf');
+}
+
