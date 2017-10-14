@@ -50,11 +50,32 @@ window.onload = function() {
       font: '64px kenvector-future',
       fill: game.colors.white,
       align: 'center'
+    },
+    smallThin: {
+      font: '16px kenvector-future-thin',
+      fill: game.colors.white,
+      align: 'center'
+    },
+    mediumThin: {
+      font: '24px kenvector-future-thin',
+      fill: game.colors.white,
+      align: 'center'
+    },
+    largeThin: {
+      font: '32px kenvector-future-thin',
+      fill: game.colors.white,
+      align: 'center'
+    },
+    hugeThin: {
+      font: '64px kenvector-future-thin',
+      fill: game.colors.white,
+      align: 'center'
     }
   };
 
   game.prefabs = {
-    NineSlice: require('./prefabs/nineslice')
+    NineSlice: require('./prefabs/nineslice'),
+    Button: require('./prefabs/button')
   };
 
   game.state.start('boot');

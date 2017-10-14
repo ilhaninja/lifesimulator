@@ -1,8 +1,6 @@
 var NineSlice = function(game, x, y, color, key, width, height, gutter) {
   Phaser.Group.call(this, game);
 
-  console.log('made it this far');
-
   var atlas = 'ui-'+color;
   var frame = color+'-'+key;
   var ext = '.png';
@@ -38,7 +36,6 @@ var NineSlice = function(game, x, y, color, key, width, height, gutter) {
 
   var sprites = [[],[],[]];
   for (var i=0; i<3; i++) {
-    console.log(i);
     for (var j=0; j<3; j++) {
       sprites[i][j] = this.create(centers[i][j][0], centers[i][j][1], atlas, frame+'-'+suffixes[i][j]+ext);
       sprites[i][j].anchor.setTo(anchors[i][j][0], anchors[i][j][1]);
