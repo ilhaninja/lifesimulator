@@ -37,6 +37,7 @@ gulp.task('vendor', function() {
   gulp
     .src([
       './bower_components/phaser-official/build/phaser.js',
+      './node_modules/@orange-games/phaser-input/build/phaser-input.js',
     ])
     .pipe(gulp.dest('./'));
 });

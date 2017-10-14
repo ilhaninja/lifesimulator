@@ -9,8 +9,14 @@ window.onload = function() {
   game.state.add('play', require('./states/play'));
   game.state.add('preload', require('./states/preload'));
 
+  game.plugins = new Phaser.PluginManager(game);
+  game.plugins.add(PhaserInput.Plugin);
+
+  game.state.add('name-sex-and-gender', require('./states/name-sex-and-gender'));
+
   game.hexColors = {
     white: 0xFFF,
+    black: 0x000,
 
     blue: 0x51B7E4,
     green: 0x8BDE67,
@@ -32,6 +38,7 @@ window.onload = function() {
 
   game.colors = {
     white: '#FFF',
+    black: '#000',
 
     blue: '#51B7E4',
     green: '#8BDE67',
@@ -96,7 +103,10 @@ window.onload = function() {
 
   game.prefabs = {
     NineSlice: require('./prefabs/nineslice'),
-    Button: require('./prefabs/button')
+    Button: require('./prefabs/button'),
+    DisableableButton: require('./prefabs/disableable-button'),
+    ToggleButton: require('./prefabs/toggle-button'),
+    ToggleButtonGroup: require('./prefabs/toggle-button-group')
   };
 
   game.state.start('boot');

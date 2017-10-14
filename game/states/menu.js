@@ -26,7 +26,7 @@ Menu.prototype = {
     subtitle.anchor.setTo(0.5, 0.5);
 
     var button = new game.prefabs.Button(game, world.centerX, 480, 'red', 'button-01', 'button-00', 'New Game', function() {
-      game.state.start('play');
+      game.state.start('name-sex-and-gender');
     });
 
     this.points = [];
