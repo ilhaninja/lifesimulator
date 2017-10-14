@@ -10,6 +10,8 @@ Menu.prototype = {
     var game = this.game, world = this.game.world, fonts = this.game.fonts;
     var title, subtitle, newGame, newGameText;
 
+    this.graphics = game.add.graphics(0, 0);
+
     var titleFont = Object.create(fonts.huge);
     titleFont.fill = game.colors.blue;
 
@@ -27,9 +29,34 @@ Menu.prototype = {
       game.state.start('play');
     });
 
+    this.points = [];
+
+    for (var i=0; i<8; i++) {
+      this.points[i] = [
+        new Phaser.Point(world.centerX - 120, -120),
+        new Phaser.Point(world.centerX + 120, -120)
+      ];
+      this.points[i][0].rotate(world.centerX, world.centerY, 45 * (i), true);
+      this.points[i][1].rotate(world.centerX, world.centerY, 45 * (i), true);
+    }
+
+    this.center = new Phaser.Point(world.centerX, world.centerY);
+
   },
 
   update: function() {
+    var graphics = this.graphics, angle = this.angle, hexColors = this.game.hexColors, math = this.game.math, world = this.game.world;
+
+    graphics.clear();
+    graphics.beginFill(this.game.hexColors.pastelBlue);
+
+    for (var i=0; i<this.points.length; i++) {
+      this.points[i][0].rotate(world.centerX, world.centerY, 0.25, true);
+      this.points[i][1].rotate(world.centerX, world.centerY, 0.25, true);
+      graphics.drawPolygon([this.points[i][0], this.points[i][1], this.center]);
+    }
+
+    graphics.endFill();
   }
 };
 

@@ -9,6 +9,27 @@ window.onload = function() {
   game.state.add('play', require('./states/play'));
   game.state.add('preload', require('./states/preload'));
 
+  game.hexColors = {
+    white: 0xFFF,
+
+    blue: 0x51B7E4,
+    green: 0x8BDE67,
+    grey: 0xEEEEEE,
+    red: 0xF8813E,
+    yellow: 0xFED856,
+
+    pastelBlue: 0x79C8EA,
+    pastelGreen: 0xCFFFB3,
+    pastelRed: 0xD8946C,
+    pastelYellow: 0xF9E193,
+
+    muteBlue: 0x347996,
+    muteGreen: 0x519932,
+    muteGrey: 0x6D6D6D,
+    muteRed: 0x99491B,
+    muteYellow: 0xE6C229
+  };
+
   game.colors = {
     white: '#FFF',
 
@@ -18,7 +39,7 @@ window.onload = function() {
     red: '#F8813E',
     yellow: '#FED856',
 
-    pastelBlue: '#B3D6C6',
+    pastelBlue: '#79C8EA',
     pastelGreen: '#CFFFB3',
     pastelRed: '#D8946C',
     pastelYellow: '#F9E193',
