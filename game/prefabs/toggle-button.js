@@ -11,7 +11,9 @@ var ToggleButton = function(game, x, y, color, key, downKey, text, actionOnClick
 
   var onClick = function() {
     this.toggle();
-    actionOnClick.call(this);
+    if(actionOnClick) {
+      actionOnClick.call(this);
+    }
   }
 
   this.button = game.make.button(x, y, atlas, onClick, this);

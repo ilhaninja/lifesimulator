@@ -6,7 +6,7 @@ SexAndGender.prototype = {
   create: function() {
     var game = this.game, world = this.game.world, fonts = this.game.fonts;
     var nameTitle, sexTitle, genderTitle;
-    var maleButton, femaleButton, cisButton, transButton;
+    var nameInput, maleButton, femaleButton, cisButton, transButton;
     
     new game.prefabs.NineSlice(game, world.centerX, world.centerY, 'grey', 'panel', 420, 800, 6);
 
@@ -16,7 +16,7 @@ SexAndGender.prototype = {
     nameTitle = game.add.text(world.centerX, 80, 'Choose your Name', titleFont);
     nameTitle.anchor.setTo(0.5, 0.5);
 
-    this.nameInput = game.add.inputField(80, 120, {
+    nameInput = this.nameInput = game.add.inputField(80, 120, {
       font: game.fonts.mediumThin.font,
       fill: game.colors.black,
       width: 320,
@@ -26,27 +26,22 @@ SexAndGender.prototype = {
     sexTitle = game.add.text(world.centerX, 190, 'Choose your Sex', titleFont);
     sexTitle.anchor.setTo(0.5, 0.5);
 
-    this.sexButtonGroup = new game.prefabs.ToggleButtonGroup(game);
-    
-    maleButton = this.sexButtonGroup.createToggleButton(world.centerX, 250, 'blue', 'button-00', 'button-03', 'Male', function() {
-    });
-    
-    femaleButton = this.sexButtonGroup.createToggleButton(world.centerX, 310, 'green', 'button-00', 'button-03', 'Female', function() {
-    });
+    var sexButtonGroup = this.sexButtonGroup = new game.prefabs.ToggleButtonGroup(game);
+    maleButton = this.sexButtonGroup.createToggleButton(world.centerX, 250, 'blue', 'button-00', 'button-03', 'Male');
+    femaleButton = this.sexButtonGroup.createToggleButton(world.centerX, 310, 'green', 'button-00', 'button-03', 'Female');
 
     genderTitle = game.add.text(world.centerX, 380, 'Choose your Gender', titleFont);
     genderTitle.anchor.setTo(0.5, 0.5);
 
-    this.genderButtonGroup = new game.prefabs.ToggleButtonGroup(game);
+    var genderButtonGroup = this.genderButtonGroup = new game.prefabs.ToggleButtonGroup(game);
+    cisButton = this.genderButtonGroup.createToggleButton(world.centerX, 440, 'red', 'button-11', 'button-00', 'Cis');
+    transButton = this.genderButtonGroup.createToggleButton(world.centerX, 500, 'yellow', 'button-00', 'button-03', 'Trans');
 
-    cisButton = this.genderButtonGroup.createToggleButton(world.centerX, 440, 'red', 'button-11', 'button-00', 'Cis', function() {
-    });
-    
-    transButton = this.genderButtonGroup.createToggleButton(world.centerX, 500, 'yellow', 'button-00', 'button-03', 'Trans', function() {
-    });
-
-    this.goButton = new game.prefabs.DisableableButton(game, world.centerX, 680, 'red', 'button-11', 'button-00', 'button-10', 'GO!', function() {
-      this.game.state.start('personality');
+    this.goButton = new game.prefabs.DisableableButton(game, world.centerX, 680, 'red', 'button-11', 'button-00', 'button-11', 'GO!', function() {
+      var male = sexButtonGroup.selected == maleButton;
+      var cis = genderButtonGroup.selected == cisButton;
+      var name = nameInput.value;
+      this.game.state.start('personality', true, false, male, cis, name);
     });
     this.goButton.disable();
   },

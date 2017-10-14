@@ -6,13 +6,13 @@ window.onload = function() {
   game.state.add('boot', require('./states/boot'));
   game.state.add('gameover', require('./states/gameover'));
   game.state.add('menu', require('./states/menu'));
-  game.state.add('play', require('./states/play'));
   game.state.add('preload', require('./states/preload'));
 
   game.plugins = new Phaser.PluginManager(game);
   game.plugins.add(PhaserInput.Plugin);
 
   game.state.add('name-sex-and-gender', require('./states/name-sex-and-gender'));
+  game.state.add('personality', require('./states/personality'));
 
   game.hexColors = {
     white: 0xFFF,
